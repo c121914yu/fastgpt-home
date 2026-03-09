@@ -57,6 +57,10 @@ export default async function FAQPage({
 
 // Generate static paths for all supported languages
 export async function generateStaticParams() {
+  // If FAQ feature is disabled, don't generate any pages
+  if (!showFAQ) {
+    return [];
+  }
   return Object.keys(localeNames).map((lang) => ({ lang }));
 }
 
