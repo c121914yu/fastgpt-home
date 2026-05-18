@@ -22,7 +22,15 @@ export const htmlLangScript = `
   var defaultLocale = '${normalizedBuildDefaultLocale}';
   function normalize(locale) {
     if (!locale) return '';
-    locale = String(locale).toLowerCase();
+    locale = String(locale).toLowerCase().replace('_', '-');
+    if (
+      locale.indexOf('zh-tw') === 0 ||
+      locale.indexOf('zh-hant') === 0 ||
+      locale.indexOf('zh-hk') === 0 ||
+      locale.indexOf('zh-mo') === 0
+    ) {
+      return 'zh-tw';
+    }
     for (var i = 0; i < locales.length; i++) {
       if (locale.indexOf(locales[i]) === 0) return locales[i];
     }
